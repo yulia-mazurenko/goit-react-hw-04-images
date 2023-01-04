@@ -19,7 +19,6 @@ const App = () => {
   const [query, setQuery] = useState('');
   const [images, setImages] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchImages() {
@@ -44,11 +43,11 @@ const App = () => {
         setImages(prevState => [...prevState, ...images]);
         setStatus(Status.RESOLVED);
       } catch (error) {
-        setError(error);
         setStatus(Status.REJECTED);
         toast.error('Something went wrong :( Try again.');
       }
     }
+
     fetchImages();
   }, [page, query]);
 
